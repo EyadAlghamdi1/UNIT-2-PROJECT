@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Project Detail{% endblock %}
+{% block style %}{% endblock %}
+{% block content %} 
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px; border-radius: 8px;">
+        <h2 class="text-center mb-4">Project Details</h2>
+        
+        <!-- Project Title -->
+        <div class="mb-3">
+            <h4>Title:</h4>
+            <p>{{ project_detail.title }}</p>
+        </div>
+        
+        <!-- Project Description -->
+        <div class="mb-3">
+            <h4>Description:</h4>
+            <p>{{ project_detail.description }}</p>
+        </div>
+        
+        <!-- Project Image -->
+        <div class="mb-3">
+            <h4>Image:</h4>
+            <img src="{{ project_detail.image.url }}" alt="Project Image" class="img-fluid rounded" style="max-height: 300px;">
+        </div>
+        
+        <!-- Project Category -->
+        <div class="mb-3">
+            <h4>Category:</h4>
+            <p>{{ project_detail.category }}</p>
+        </div>
+        
+        <!-- Project Status -->
+        <div class="mb-3">
+            <h4>Completed:</h4>
+            <p>{{ project_detail.status|yesno:"Yes,No" }}</p>
+        </div>
+        
+        <!-- Back Button -->
+        <div class="text-center">
+            <a href="{% url 'projects:projects_view' %}" class="btn btn-dark">Back to Projects</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

@@ -9,4 +9,11 @@ from projects.models import Project
 def dashboard_view(request:HttpRequest):
     contact = Contact.objects.all()
     project = Project.objects.all()
-    return render(request,"dashboard/dashboard.html" , {"contact":contact},{"project":project} )
+
+    if 'data' in request.POST:
+        if request.POST["data"] == "messages":
+            return render(request,"dashboard/dashboard.html" , {"contact":contact})
+        elif request.POST["data"] == "projects":
+            return render(request,"dashboard/dashboard.html" , {"project":project})
+
+    return render(request,"dashboard/dashboard.html" , {"contact":contact,"project":project})

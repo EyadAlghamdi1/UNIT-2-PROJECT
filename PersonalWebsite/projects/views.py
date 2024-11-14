@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 from django.http import HttpRequest,HttpResponse
 from .models import Project
 # Create your views here.
@@ -21,7 +21,8 @@ def add_projects_view(request:HttpRequest):
  
         )
         new_project.save()
-    return render(request,"projects/add_projects.html")
+    return render(request,"projects/add_project.html")
+
 
 def detail_view(request:HttpRequest,project_id:int):
     project_detail = Project.objects.get(pk=project_id)
@@ -42,6 +43,6 @@ def update_view(request:HttpRequest,project_id:int):
 def delete_view(request:HttpRequest,project_id:int):
     project_detail = Project.objects.get(pk=project_id)
     project_detail.delete()
-    return render(request,"projects/projects.html")
+    return redirect("dashboard:dashboard_view")
 
 
