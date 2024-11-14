@@ -1,0 +1,74 @@
+/* Flexbox settings for alignment */
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Underline effect */
+.nav-link {
+    position: relative;
+    text-decoration: none; /* Remove default underline */
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #198754; /* Match the color of your text-success */
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Full underline on hover */
+}
+
+
+
+.carousel {
+    margin-bottom: 4rem;
+    height: 100%;
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 36rem;
+  }
+  .contact-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+.contact-form, .contact-info {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.contact-info .box {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.contact-info .box a {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+.contact-info .box a:hover {
+    text-decoration: underline;
+}

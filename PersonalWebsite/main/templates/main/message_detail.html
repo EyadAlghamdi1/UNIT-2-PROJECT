@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Detail{% endblock %}
+{% block style %}{% endblock %}
+{% block content %} 
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">User Messages</h2>
+    <div class="row">
+        {% for message in user_message %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ message.first_name }} {{ message.last_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ message.email }}</h6>
+                        <p class="card-text">{{ message.message }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Submitted on {{ message.created_at }}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No messages available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

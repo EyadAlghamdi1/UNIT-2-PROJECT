@@ -1,0 +1,22 @@
+from django.shortcuts import render
+from django.http import HttpRequest,HttpResponse
+from .models import Contact
+# Create your views here.
+
+def home_view(request:HttpRequest):
+    return render(request,"main/home.html")
+
+def contact_view(request: HttpRequest):
+    if request.method == "POST":
+        user_message = Contact(
+            first_name=request.POST["first_name"],
+            last_name=request.POST["last_name"],
+            email=request.POST["email"],
+            message=request.POST["message"],
+        )
+        user_message.save()
+    return render(request, "main/contact.html")
+
+def message_detail_view(request: HttpRequest ,message_id:int):
+    user_message = Contact.objects.get(pk=message_id)  
+    return render(request, "main/contact_massege.html", {"user_message": user_message})
