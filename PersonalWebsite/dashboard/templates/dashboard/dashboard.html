@@ -1,82 +1,140 @@
 {% extends 'main/base.html' %}
-{% block title %}dashboard{% endblock %}
-{% block style %}{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block style %}
+<style>
+    .sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        background-color: #343a40;
+        color: #fff;
+        padding-top: 20px;
+        height: 100vh;
+        position: fixed;
+    }
+    .sidebar a {
+        color: #adb5bd;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 20px;
+        display: block;
+    }
+    .sidebar a:hover {
+        color: #fff;
+        background-color: #495057;
+    }
+    .sidebar .active {
+        color: #fff;
+        background-color: #007bff;
+    }
 
-{% block content %} 
-<h1>Dashboard</h1>
-<div class="container-fluid d-flex">
-<div class="col p-5 me-5 align-items-center">
-<form  action="{% url 'dashboard:dashboard_view' %}" method="post"> 
-    {% csrf_token %}
-    <button type="submit" name="data" value="all">all</button>
-    <button type="submit" name="data" value="projects">projects</button>
-    <button type="submit" name="data" value="messages">messages</button>
-</form>
+    .header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 15px;
+        margin-left: 250px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+    .btn-primary, .btn-dark, .btn-danger {
+        margin-right: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="sidebar">
+    <h3 class="text-center">Dashboard Menu</h3>
+    <a href="{% url 'dashboard:dashboard_view' %}" class="{% if request.resolver_match.url_name == 'dashboard_view' %}active{% endif %}">Dashboard Overview</a>
+    <a href="{% url 'dashboard:dashboard_view' %}?data=projects" class="{% if request.GET.data == 'projects' %}active{% endif %}">Projects</a>
+    <a href="{% url 'dashboard:dashboard_view' %}?data=messages" class="{% if request.GET.data == 'messages' %}active{% endif %}">Messages</a>
 </div>
 
-<div class="container p-4 mt-3">
+<div class="header">
+    <h1>Dashboard</h1>
+    <form action="{% url 'dashboard:dashboard_view' %}" method="post" class="d-inline-flex gap-2">
+        {% csrf_token %}
+        <button type="submit" name="data" value="all" class="btn btn-light">All</button>
+        <button type="submit" name="data" value="projects" class="btn btn-light">Projects</button>
+        <button type="submit" name="data" value="messages" class="btn btn-light">Messages</button>
+    </form>
+    <form method="get" class="d-inline-flex ms-3">
+        <label for="sort" class="me-2">Sort by:</label>
+        <select name="sort" id="sort" class="form-select form-select-sm" onchange="this.form.submit()">
+            <option value="newest" {% if request.GET.sort == 'newest' %}selected{% endif %}>Newest</option>
+            <option value="oldest" {% if request.GET.sort == 'oldest' %}selected{% endif %}>Oldest</option>
+        </select>
+    </form>
+</div>
+
+<div class="main-content">
     {% if contact %}
     <h2>Messages</h2>
     <table class="table table-hover">
-        <thead>
-            <th>first name </th>
-            <th>last name </th>
-            <th>email </th>
-            <th style="width: 20%;">date </th>
-            <th style="width: 20%;"> Actions</th>
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th style="width: 20%;">Date</th>
+                <th style="width: 20%;">Actions</th>
+            </tr>
         </thead>
         <tbody>
-            {% for massage in contact %}
+            {% for message in contact %}
             <tr>    
-                <td> {{ massage.first_name}}</td>
-                <td> {{ massage.last_name}}</td>
-                <td> {{ massage.email}}</td>
-                <td> {{ massage.created_at}}</td>
-                <td class="d-flex gap-1">
-                    <a href="{% url 'main:message_detail_view' massage.id %}" class="btn btn-dark">view</a>
-                    <a class="btn btn-dark">edit</a>
-                    <a href="{% url 'main:delete_view' massage.id %}" class="btn btn-danger">delete</a>
+                <td>{{ message.first_name }}</td>
+                <td>{{ message.last_name }}</td>
+                <td>{{ message.email }}</td>
+                <td>{{ message.created_at }}</td>
+                <td class="d-flex">
+                    <a href="{% url 'main:message_detail_view' message.id %}" class="btn btn-dark">View</a>
+                    <a href="{% url 'main:delete_view' message.id %}" class="btn btn-danger">Delete</a>
                 </td>
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% endif %}
+
     {% if project %}
     <h2>Projects</h2>
     <table class="table table-hover">
-        <thead >
-            <th>Title </th>
-            <th>status </th>
-            <th>Category</th>
-            <th style="width: 20%;">description</th>
-            <th style="width: 20%;"> Actions </th>
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Category</th>
+                <th style="width: 20%;">Tools</th>
+                <th style="width: 20%;">Actions</th>
+            </tr>
         </thead>
-        <tbody >
+        <tbody>
             {% for pro in project %}
             <tr>    
-                <td> {{ pro.title}}</td>
-                <td> {{ pro.status}}</td>
-                <td> {{ pro.category}}</td>
-                <td> {{ pro.description}}</td>
-                
-               <td class="d-flex gap-1">
-                    <a href="{% url 'projects:detail_view' pro.id %}" class="btn btn-dark">view</a>
-                    <a href="{% url 'projects:update_view' pro.id %}" class="btn btn-dark">edit</a>
-                    <a href="{% url 'projects:delete_view' pro.id %}" class="btn btn-danger">delete</a>
+                <td>{{ pro.title }}</td>
+                <td>{{ pro.status|yesno:"Completed,In Progress" }}</td>
+                <td>{{ pro.category }}</td>
+                <td>{{ pro.tools }}</td>
+                <td class="d-flex">
+                    <a href="{% url 'projects:detail_view' pro.id %}" class="btn btn-dark">View</a>
+                    <a href="{% url 'projects:update_view' pro.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'projects:delete_view' pro.id %}" class="btn btn-danger">Delete</a>
                 </td>
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% endif %}
-
-    
-
-
-</div>  
 </div>
 
 {% endblock %}

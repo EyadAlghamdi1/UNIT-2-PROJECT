@@ -9,19 +9,24 @@ def projects_view(request:HttpRequest):
     return render(request,"projects/projects.html" , {"projects": projects})
 
 
-def add_projects_view(request:HttpRequest):
+def add_projects_view(request: HttpRequest):
     if request.method == "POST":
         new_project = Project(
-
-        title=request.POST["title"],
-        description = request.POST["description"],
-        image = request.FILES["image"],    
-        category = request.POST["category"],
-        status = request.POST["status"]
- 
+            title=request.POST["title"],
+            description=request.POST["description"],
+            image=request.FILES["image"],
+            category=request.POST["category"],
+            tools=request.POST["tools"], 
+            live_url=request.POST["live_url"],  
+            github_url=request.POST["github_url"],
+            status=request.POST["status"]
         )
+        
         new_project.save()
-    return render(request,"projects/add_project.html")
+        
+        return redirect("projects:projects_view")  
+
+    return render(request, "projects/add_project.html")
 
 
 def detail_view(request:HttpRequest,project_id:int):
@@ -36,7 +41,12 @@ def update_view(request:HttpRequest,project_id:int):
         project_detail.image = request.FILES["image"]
         project_detail.category = request.POST["category"]
         project_detail.status = request.POST["status"]
+        project_detail.tools = request.POST["tools"]
+        project_detail.live_url = request.POST["live_url"]
+        project_detail.github_url = request.POST["github_url"]
         project_detail.save()
+        return redirect("dashboard:dashboard_view")
+
     return render(request,"projects/update.html", {"project_detail":project_detail})
 
 

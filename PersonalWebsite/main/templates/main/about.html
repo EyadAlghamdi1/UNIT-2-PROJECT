@@ -1,0 +1,128 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}About Me{% endblock %}
+
+{% block style %}
+<style>
+  body {
+    background-color: #F8FAFC; /* Soft neutral tone for better readability */
+    font-family: 'Poppins', sans-serif;
+  }
+  .about-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  .profile-header {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #457B9D;
+  }
+  .profile-header h1 {
+    margin-top: 15px;
+    font-size: 2.5rem;
+    color: #1D3557;
+  }
+  .profile-header p {
+    font-size: 1.2rem;
+    color: #457B9D;
+  }
+  .divider {
+    margin: 30px 0;
+    border-top: 2px solid #A8DADC;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1D3557;
+    margin-bottom: 15px;
+  }
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #343a40;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .skill-tags span {
+    background: #A8DADC;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+  .cta-section {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .cta-section a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1D3557;
+    padding: 12px 25px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+  .cta-section a:hover {
+    background-color: #457B9D;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="about-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img src="{% static 'images/home.png' %}" alt="Eyad's Picture">
+      <h1>Eyad</h1>
+      <p>Full-Stack Developer | AI Enthusiast | Web Innovator</p>
+    </div>
+    <div class="divider"></div>
+
+    <!-- About Me Section -->
+    <section>
+      <h2 class="section-title">Who Am I?</h2>
+      <p class="about-text">
+        Hello, I’m Eyad! I am a passionate full-stack developer with a knack for problem-solving 
+        and crafting seamless digital experiences. I specialize in Python and Django, and I thrive 
+        on bringing ideas to life with intuitive design and efficient code. I have a strong academic 
+        foundation in Computer Information Systems and hands-on experience working on impactful projects.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+      <h2 class="section-title">Skills</h2>
+      <div class="skill-tags">
+        <span>Python</span>
+        <span>Django</span>
+        <span>JavaScript</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Bootstrap</span>
+        <span>REST APIs</span>
+        <span>AI Integration</span>
+        <span>Version Control (Git)</span>
+      </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <div class="cta-section">
+      <a href="{% url 'projects:projects_view' %}">Explore My Projects</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

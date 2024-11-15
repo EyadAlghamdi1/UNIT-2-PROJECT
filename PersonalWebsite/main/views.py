@@ -6,6 +6,10 @@ from .models import Contact
 def home_view(request:HttpRequest):
     return render(request,"main/home.html")
 
+def about_view(request:HttpRequest):
+    return render(request,"main/about.html")
+
+
 def contact_view(request: HttpRequest):
     if request.method == "POST":
         user_message = Contact(
