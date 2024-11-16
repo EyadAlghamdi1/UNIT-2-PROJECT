@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Add Skill{% endblock %}
+{% block style %}{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px; border-radius: 8px;">
+        <h2 class="text-center mb-4">Add New Skill</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Skill Name Field -->
+            <div class="form-group mb-3">
+                <label for="name">Skill Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter skill name" required>
+            </div>
+            
+            <!-- Skill Icon Upload Field -->
+            <div class="form-group mb-3">
+                <label for="icon">Skill Icon</label>
+                <input type="file" id="icon" name="icon" class="form-control-file" required>
+            </div>
+            
+            <!-- Category Field -->
+            <div class="form-group mb-3">
+                <label for="category">Category</label>
+                <select id="category" name="category" class="form-control" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="Front End">Front End</option>
+                    <option value="Back End">Back End</option>
+                    <option value="Tool">Tool</option>
+                </select>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

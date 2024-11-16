@@ -3,15 +3,16 @@
 {% block title %}Skills{% endblock %}
 {% block style %}
 <style>
-
     /* Container for Skills Section */
     .skills-section {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        padding: 2rem;
-    }
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 5rem; 
+}
+
     /* Card Styling */
     .skills-card {
         background: linear-gradient(0deg, rgb(255, 243, 241) 0%, rgb(170, 130, 43) 100%);
@@ -20,14 +21,14 @@
         width: 250px;
         text-align: center;
     }
-    
+
     /* Header for Each Skill Category */
     .skills-card h3 {
         font-weight: bold;
         color: #ebebeb;
         margin-bottom: 1rem;
     }
-    
+
     /* List of Skills */
     .skills-list {
         list-style-type: none;
@@ -35,7 +36,7 @@
         margin: 0;
         text-align: left;
     }
-    
+
     .skills-list li {
         display: flex;
         align-items: center;
@@ -44,7 +45,7 @@
         color: #000000;
         margin-bottom: 0.5rem;
     }
-    
+
     /* Skill Icon */
     .skills-icon {
         width: 20px;
@@ -54,46 +55,24 @@
 {% endblock %}
 
 {% block content %}
-<div style="height: 100vh;">
 <div class="container text-center mt-5">
     <h1>Skills</h1>
     <hr style="width: 80px; border-top: 3px solid #1d3557; margin: 0 auto 2rem;">
 </div>
 
 <div class="skills-section">
-    <!-- Front-End Skills -->
+    {% for category, skills in skills_by_category.items %}
     <div class="skills-card">
-        <h3>FRONT-END</h3>
+        <h3>{{ category|upper }}</h3>
         <ul class="skills-list">
-            <li><img src="{% static 'icons/html-5.png' %}" alt="HTML" class="skills-icon"> HTML</li>
-            <li><img src="{% static 'icons/css-3.png' %}" alt="CSS" class="skills-icon"> CSS</li>
-            <li><img src="{% static 'icons/bootstrap.png' %}" alt="Bootstrap" class="skills-icon"> Bootstrap</li>
-            <li><img src="{% static 'icons/js.png' %}" alt="JavaScript" class="skills-icon"> JavaScript</li>
-            <li><img src="{% static 'icons/react.png' %}" alt="React" class="skills-icon"> React.js</li>
+            {% for skill in skills %}
+            <li>
+                <img src="{{ skill.icon.url }}" alt="{{ skill.name }}" class="skills-icon">
+                {{ skill.name }}
+            </li>
+            {% endfor %}
         </ul>
     </div>
-
-    <!-- Back-End Skills -->
-    <div class="skills-card">
-        <h3>BACK-END</h3>
-        <ul class="skills-list">
-            <li><img src="{% static 'icons/python.png' %}" alt="MySQL" class="skills-icon"> PYTHON</li>
-            <li><img src="{% static 'icons/mysql.png' %}" alt="MySQL" class="skills-icon"> MySQL</li>
-            <li><img src="{% static 'icons/database-storage.png' %}" alt="MongoDB" class="skills-icon"> MongoDB</li>
-            <li><img src="{% static 'icons/api.png' %}" alt="APIs" class="skills-icon"> APIs</li>
-        </ul>
-    </div>
-
-    <!-- Other Skills -->
-    <div class="skills-card">
-        <h3>TOOLS</h3>
-        <ul class="skills-list">
-            <li><img src="{% static 'icons/git.png' %}" alt="Git" class="skills-icon"> Git</li>
-            <li><img src="{% static 'icons/github.png' %}" alt="GitHub" class="skills-icon"> GitHub</li>
-            <li><img src="{% static 'icons/figma.png' %}" alt="Figma" class="skills-icon"> Figma</li>
-            <li><img src="{% static 'icons/agile.png' %}" alt="Scrum/Kanban" class="skills-icon">Agile</li>
-        </ul>
-    </div>
-</div>
+    {% endfor %}
 </div>
 {% endblock %}

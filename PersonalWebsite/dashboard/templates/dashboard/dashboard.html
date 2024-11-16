@@ -58,6 +58,7 @@
         <a href="{% url 'dashboard:dashboard_view' %}" class="{% if data_filter == 'all' %}active{% endif %}">All</a>
         <a href="{% url 'dashboard:dashboard_view' %}?data=projects" class="{% if data_filter == 'projects' %}active{% endif %}">Projects</a>
         <a href="{% url 'dashboard:dashboard_view' %}?data=messages" class="{% if data_filter == 'messages' %}active{% endif %}">Messages</a>
+        <a href="{% url 'dashboard:dashboard_view' %}?data=skills" class="{% if data_filter == 'skills' %}active{% endif %}">Skills</a>
     </div>
 <div class="header">
 <form method="get" class="d-inline-flex ms-3 text-end">
@@ -73,6 +74,10 @@
         {% if data_filter == 'projects' %}
             <li class="nav-item m-2">
                 <a class="btn btn-dark" href="{% url 'projects:add_projects_view' %}">Add Project</a>
+            </li>
+        {% elif data_filter == 'skills' %}
+            <li class="nav-item m-2">
+                <a class="btn btn-dark" href="{% url 'main:add_skill_view' %}">Add Skill</a>
             </li>
         {% endif %}
     </ul>
@@ -132,6 +137,32 @@
                     <a href="{% url 'projects:detail_view' pro.id %}" class="btn btn-dark">View</a>
                     <a href="{% url 'projects:update_view' pro.id %}" class="btn btn-primary">Edit</a>
                     <a href="{% url 'projects:delete_view' pro.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% if skill %}
+    <h2>Skills</h2>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Icon</th>
+                <th style="width: 20%;">Skill Name</th>
+                <th style="width: 20%;">Category</th>
+                <th style="width: 20%;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for skil in skill %}
+            <tr>    
+                <td>{{ skil.icon.url }}</td>
+                <td>{{ skil.name }}</td>
+                <td>{{ skil.category }}</td>
+                <td class="d-flex">
+                    <a href="{% url 'main:skills_view'%}" class="btn btn-dark">View</a>
+                    <a href="{% url 'main:delete_skill_view' skil.id %}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}
