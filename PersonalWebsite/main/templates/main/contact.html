@@ -3,9 +3,13 @@
 {% block title %}Contact{% endblock %}
 {% block style %}{% endblock %}
 {% block content %} 
+<div class="container text-center mt-5">
+    <h1>Contact</h1>
+    <hr style="width: 80px; border-top: 3px solid #1d3557; margin: 0 auto 2rem;">
+</div>
     <div class="contact-container">
         <!-- Left: Contact Form -->
-        <div class="contact-form">
+        <div class="contact-form" style="background-color:#fff3f1 ; ">
             <h4>Contact</h4>
             <form action="{% url 'main:contact_view' %}" method="post">
             {% csrf_token %}
@@ -31,7 +35,7 @@
         </div>
     
         <!-- Right: Contact Information -->
-        <div class="contact-info">
+        <div class="contact-info" style=background-color:#fff3f1 ; >
             <div class="box">
                 <h5>Email</h5>
                 <a href="eyalghamdi@outlook.com">eyalghamdi@outlook.com</a>

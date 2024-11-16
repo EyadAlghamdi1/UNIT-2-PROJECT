@@ -5,124 +5,156 @@
 {% block style %}
 <style>
   body {
-    background-color: #F8FAFC; /* Soft neutral tone for better readability */
+    background-color: #F8FAFC;
     font-family: 'Poppins', sans-serif;
   }
-  .about-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+  /* General Section Styling */
+  section {
+    padding: 50px 20px;
+    text-align: center;
   }
+
+  section:nth-child(even) {
+    background-color: rgb(252, 243, 230);
+  }
+
+  section:nth-child(odd) {
+    background-color: rgb(255, 236, 213);
+  }
+
+  /* Profile Header */
   .profile-header {
     text-align: center;
-    padding: 20px 0;
+    padding: 50px 0;
   }
   .profile-header img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: 5px solid #457B9D;
+    margin-bottom: 20px;
   }
   .profile-header h1 {
-    margin-top: 15px;
     font-size: 2.5rem;
     color: #1D3557;
+    margin: 0;
   }
   .profile-header p {
     font-size: 1.2rem;
     color: #457B9D;
   }
-  .divider {
-    margin: 30px 0;
-    border-top: 2px solid #A8DADC;
-  }
-  .section-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #1D3557;
-    margin-bottom: 15px;
-  }
+
+  /* About Section */
   .about-text {
     font-size: 1rem;
     line-height: 1.8;
     color: #343a40;
+    max-width: 800px;
+    margin: 0 auto;
   }
-  .skill-tags {
+
+  /* Personal Interests Section */
+  .interests {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 20px;
+    margin-top: 20px;
   }
-  .skill-tags span {
-    background: #A8DADC;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: #ffffff;
+
+  .interest-card {
+    background: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    color: rgb(71, 46, 0);
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+  /* CTA Section */
   .cta-section {
     text-align: center;
-    margin-top: 30px;
+    background-color: #F0F4F8; /* Light neutral background for contrast */
+    padding: 50px 20px;
   }
-  .cta-section a {
-    text-decoration: none;
+
+  .cta-section h2 {
+    font-size: 1.8rem;
+    color: #1D3557;
+    margin-bottom: 15px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: #57371d;
     color: #ffffff;
-    background-color: #1D3557;
     padding: 12px 25px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  .cta-section a:hover {
-    background-color: #457B9D;
+
+  .cta-button:hover {
+    background-color: #6e5524;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
   }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="about-container">
-    <!-- Profile Header -->
-    <div class="profile-header">
-      <img src="{% static 'images/home.png' %}" alt="Eyad's Picture">
-      <h1>Eyad</h1>
-      <p>Full-Stack Developer | AI Enthusiast | Web Innovator</p>
-    </div>
-    <div class="divider"></div>
+<!-- Profile Header Section -->
+<section class="profile-header">
+  <img src="{% static 'images/home.png' %}" alt="Eyad's Picture">
+  <h1>Eyad</h1>
+  <p>Full-Stack Developer | AI Enthusiast | Web Innovator</p>
+</section>
 
-    <!-- About Me Section -->
-    <section>
-      <h2 class="section-title">Who Am I?</h2>
-      <p class="about-text">
-        Hello, I’m Eyad! I am a passionate full-stack developer with a knack for problem-solving 
-        and crafting seamless digital experiences. I specialize in Python and Django, and I thrive 
-        on bringing ideas to life with intuitive design and efficient code. I have a strong academic 
-        foundation in Computer Information Systems and hands-on experience working on impactful projects.
-      </p>
-    </section>
+<!-- About Me Section -->
+<section>
+  <h2>Who Am I?</h2>
+  <p class="about-text">
+    Hello, I’m Eyad! I am a passionate full-stack developer with a knack for problem-solving 
+    and crafting seamless digital experiences. I specialize in Python and Django, and I thrive 
+    on bringing ideas to life with intuitive design and efficient code. I have a strong academic 
+    foundation in Computer Information Systems and hands-on experience working on impactful projects.
+  </p>
+</section>
 
-    <!-- Skills Section -->
-    <section>
-      <h2 class="section-title">Skills</h2>
-      <div class="skill-tags">
-        <span>Python</span>
-        <span>Django</span>
-        <span>JavaScript</span>
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>Bootstrap</span>
-        <span>REST APIs</span>
-        <span>AI Integration</span>
-        <span>Version Control (Git)</span>
-      </div>
-    </section>
-
-    <!-- Call-to-Action Section -->
-    <div class="cta-section">
-      <a href="{% url 'projects:projects_view' %}">Explore My Projects</a>
-    </div>
+<!-- Personal Interests Section -->
+<section>
+  <h2>My Interests</h2>
+  <div class="interests">
+    <div class="interest-card">Photography</div>
+    <div class="interest-card">Traveling</div>
+    <div class="interest-card">Reading</div>
+    <div class="interest-card">Coding Challenges</div>
+    <div class="interest-card">Gaming</div>
   </div>
-</div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="cta-section">
+  <h2>Want to Learn More?</h2>
+  <a href="{% url 'projects:projects_view' %}" class="cta-button">Explore My Projects</a>
+</section>
+
+    <!-- Right: Contact Information -->
+        <section class="cta-section">
+          <div>
+              <h5>Email</h5>
+              <a class="text-decoration-none" href="eyalghamdi@outlook.com">eyalghamdi@outlook.com</a>
+              <h5>WhatsApp</h5>
+              <a class="text-decoration-none" href="https://wa.me/0590085417" target="_blank">+966 59 008 5417</a>
+          </div>
+          </div>
+      </div>
+  </section>
 {% endblock %}

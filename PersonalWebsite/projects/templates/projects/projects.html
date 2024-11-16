@@ -4,24 +4,27 @@
 {% block style %}{% endblock %}
 {% block content %} 
 
+<div class="container text-center mt-5">
+    <h1>Projects</h1>
+    <hr style="width: 80px; border-top: 3px solid #1d3557; margin: 0 auto 2rem;">
+</div>
 <div class="container d-flex flex-wrap justify-content-center mt-5">
     {% for project in projects %}
-    <div class="card shadow-sm p-4 m-3" style="width: 100%; max-width: 800px; border-radius: 12px; background-color: #f5faf5;">
+    <div class="card shadow p-4 m-3 d-flex flex-row" style="width: 100%; max-width: 800px; border-radius: 12px; background-color: #fff3f1;">
         
-        <!-- Image Section -->
-        <div class="p-3" style="background-color: #e6e6e6; border-radius: 8px;">
-            <img src="{{ project.image.url }}" alt="Project Image" class="img-fluid rounded" style="max-width: 100%; max-height: 300px;">
+        <!-- Image Section on the Left -->
+        <div class="p-3" style="background-color: #fff3f1; border-radius: 8px; flex: 0 0 300px; max-height: 300px;">
+            <img src="{{ project.image.url }}" alt="Project Image" class="img-fluid rounded" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
 
-        <!-- Details Section -->
-        <div class="p-4">
+        <div class="p-4" style="flex: 1;">
             <h5 class="text-uppercase mb-3" style="color: #333;">{{ project.title }}</h5>
-            
             
             <div class="mb-3">
                 <h6 class="text-uppercase" style="color: #007bff;">Category</h6>
                 <p>{{ project.category }}</p>
             </div>
+
             <!-- Description -->
             <div class="mb-3">
                 <h6 class="text-uppercase" style="color: #007bff;">About</h6>
@@ -34,11 +37,10 @@
                 <p>{{ project.tools }}</p>
             </div>
 
-            
             <!-- Links -->
             <div class="mt-4">
                 <a href="{{ project.live_url }}" target="_blank" style="color: #007bff; text-decoration: none;">Live</a> |
-                <a href="{{ project.github_url }}" target="_blank" style="color: #ff4500; text-decoration: none;">Code on GitHub</a> | 
+                <a href="{{ project.github_url }}" target="_blank" style="color: #ff4500; text-decoration: none;">Code on GitHub</a>
             </div>
         </div>
     </div>

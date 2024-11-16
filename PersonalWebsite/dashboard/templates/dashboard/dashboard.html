@@ -28,7 +28,7 @@
     }
 
     .header {
-        background-color: #007bff;
+        background-color: #343a40;
         color: #fff;
         padding: 15px;
         margin-left: 250px;
@@ -52,29 +52,32 @@
 {% endblock %}
 
 {% block content %}
-<div class="sidebar">
-    <h3 class="text-center">Dashboard Menu</h3>
-    <a href="{% url 'dashboard:dashboard_view' %}" class="{% if request.resolver_match.url_name == 'dashboard_view' %}active{% endif %}">Dashboard Overview</a>
-    <a href="{% url 'dashboard:dashboard_view' %}?data=projects" class="{% if request.GET.data == 'projects' %}active{% endif %}">Projects</a>
-    <a href="{% url 'dashboard:dashboard_view' %}?data=messages" class="{% if request.GET.data == 'messages' %}active{% endif %}">Messages</a>
+
+    <div class="sidebar">
+        <h2 class="text-center">Dashboard</h2>
+        <a href="{% url 'dashboard:dashboard_view' %}" class="{% if data_filter == 'all' %}active{% endif %}">All</a>
+        <a href="{% url 'dashboard:dashboard_view' %}?data=projects" class="{% if data_filter == 'projects' %}active{% endif %}">Projects</a>
+        <a href="{% url 'dashboard:dashboard_view' %}?data=messages" class="{% if data_filter == 'messages' %}active{% endif %}">Messages</a>
+    </div>
+<div class="header">
+<form method="get" class="d-inline-flex ms-3 text-end">
+    <input type="hidden" name="data" value="{{ data_filter }}"> 
+    <label for="sort" class="me-2">Sort by:</label>
+    <select name="sort" id="sort" class="form-select form-select-sm" onchange="this.form.submit()">
+        <option value="newest" {% if sort_option == 'newest' %}selected{% endif %}>Newest</option>
+        <option value="oldest" {% if sort_option == 'oldest' %}selected{% endif %}>Oldest</option>
+    </select>
+</form>
+
+    <ul class="d-flex align-items-center list-unstyled">
+        {% if data_filter == 'projects' %}
+            <li class="nav-item m-2">
+                <a class="btn btn-dark" href="{% url 'projects:add_projects_view' %}">Add Project</a>
+            </li>
+        {% endif %}
+    </ul>
 </div>
 
-<div class="header">
-    <h1>Dashboard</h1>
-    <form action="{% url 'dashboard:dashboard_view' %}" method="post" class="d-inline-flex gap-2">
-        {% csrf_token %}
-        <button type="submit" name="data" value="all" class="btn btn-light">All</button>
-        <button type="submit" name="data" value="projects" class="btn btn-light">Projects</button>
-        <button type="submit" name="data" value="messages" class="btn btn-light">Messages</button>
-    </form>
-    <form method="get" class="d-inline-flex ms-3">
-        <label for="sort" class="me-2">Sort by:</label>
-        <select name="sort" id="sort" class="form-select form-select-sm" onchange="this.form.submit()">
-            <option value="newest" {% if request.GET.sort == 'newest' %}selected{% endif %}>Newest</option>
-            <option value="oldest" {% if request.GET.sort == 'oldest' %}selected{% endif %}>Oldest</option>
-        </select>
-    </form>
-</div>
 
 <div class="main-content">
     {% if contact %}
@@ -136,5 +139,6 @@
     </table>
     {% endif %}
 </div>
-
+{% block footer %}
+{% endblock %}
 {% endblock %}

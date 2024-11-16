@@ -1,13 +1,18 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpRequest,HttpResponse
 from .models import Contact
+from projects.models import Project
 # Create your views here.
 
 def home_view(request:HttpRequest):
-    return render(request,"main/home.html")
+    projects = Project.objects.all()[:3]
+    return render(request,"main/home.html",{"projects":projects})
 
 def about_view(request:HttpRequest):
     return render(request,"main/about.html")
+
+def skills_view(request:HttpRequest):
+    return render(request,"main/skills.html")
 
 
 def contact_view(request: HttpRequest):
