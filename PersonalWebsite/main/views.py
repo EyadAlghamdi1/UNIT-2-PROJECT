@@ -44,6 +44,7 @@ def contact_view(request: HttpRequest):
             message=request.POST["message"],
         )
         user_message.save()
+        return render(request, "main/succses.html")
     return render(request, "main/contact.html")
 
 def message_detail_view(request: HttpRequest,message_id:int):

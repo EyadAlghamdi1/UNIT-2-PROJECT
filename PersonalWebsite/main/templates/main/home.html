@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block title %}Home{% endblock %}
-{% block style %}{% endblock %}
+{% block style %}
+<style>
+        .skills-icon {
+        width: 35px;
+        height: 35px;
+    }
+</style>
+
+{% endblock %}
 {% block content %} 
 
 
@@ -21,13 +29,16 @@
                     <div class="carousel-caption text-start">
                         <div class="bulr-backgroand bg-light rounded bg-opacity-10 ">
                         <h1 style="color: #873f00"> DevEyad: Crafting Digital Dreams </h1>
-                        <h4 style="color: #873f00">Welcome to my journey as a passionate full-stack developer, where code meets creativity</h4>
+                        <h4 style="color: #873f00">Welcome to my journey</h4>
+                        <a class="animate__animated animate__fadeIn" href="http://www.linkedin.com/in/eyad-alghamdi-036a39275"><img src="{% static 'images/linkedin.png' %}" class="skills-icon" alt=""></a>
+                        <a class="animate__animated animate__fadeIn" href="eyalghamdi@outlook.com"><img src="{% static 'images/email.png' %}" class="skills-icon" alt=""></a>
+
                     </div>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/pexels-negativespace-92904.jpg ' %}" class="d-block w-100 object-fit-fill" alt="Slide 2">
+                <img src="{% static 'images/PRD-idea-development-featured-images-1024x571.webp ' %}" class="d-block w-100 object-fit-fill" alt="Slide 2">
                 <div class="container">
                     <div class="carousel-caption bulr-backgroand bg-dark rounded bg-opacity-10">
                         <h1 style="color: #873f00"> Transforming Ideas into Reality</h1>
@@ -37,11 +48,11 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/home3.jpg' %}" class="d-block w-100" alt="Slide 3">
+                <img src="{% static 'images/deal.webp' %}" class="d-block w-100" alt="Slide 3">
                 <div class="container">
                     <div class="carousel-caption bulr-backgroand bg-dark rounded bg-opacity-10">
-                        <h1 style="color: #873f00"> Your Vision, My Mission.</h1>
-                        <h4 style="color: #873f00">Let’s build something extraordinary together!</h4>
+                        <h1 style="color: #ffffff"> Your Vision, My Mission.</h1>
+                        <h4 style="color: #ffffff">Let’s build something extraordinary together!</h4>
                         <p><a class="btn btn-lg button text-light" href="{% url 'main:contact_view' %}">Contact me</a></p>
                     </div>
                 </div>

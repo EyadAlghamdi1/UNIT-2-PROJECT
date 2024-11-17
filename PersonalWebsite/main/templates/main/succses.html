@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Success{% endblock %}
+
+{% block style %}
+<style>
+    .success-message {
+        margin: 50px auto;
+        text-align: center;
+        color: #2c3e50;
+        font-family: Arial, sans-serif;
+    }
+
+    .success-message h1 {
+        font-size: 2.5rem;
+        color: #27ae60;
+        text-transform: uppercase;
+    }
+
+    .success-message h4 {
+        font-size: 1.5rem;
+        color: #34495e;
+    }
+
+    .next-steps {
+        margin: 30px auto;
+        text-align: center;
+        font-size: 1rem;
+        color: #7f8c8d;
+    }
+
+    .next-steps a {
+        color: #2980b9;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .next-steps a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="success-message m-5">
+    <h1>Thank You</h1>
+    <h4>We will respond as soon as possible</h4>
+    <p class="next-steps">
+        Check out <a href="{% url 'main:home_view' %}">our blog</a> for the latest updates. 
+        If you have further inquiries, you can <a href="{% url 'main:contact_view' %}">contact us</a> anytime.
+    </p>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
