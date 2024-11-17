@@ -51,7 +51,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg light-bg border-bottom">
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <!-- Brand -->
@@ -94,7 +93,7 @@
         <div class="container sticky-bottom">
             <p>&copy; 2024 DevEyad. All rights reserved.</p>
             <p>
-                <a href="#">Privacy Policy</a> | 
+                <a href="{% url 'main:about_view' %}">About</a> | 
                 <a href="{% url 'dashboard:dashboard_view' %}">Dashboard</a> | 
                 <a href="{% url 'main:contact_view' %}">Contact Us</a>
             </p>
